@@ -1,26 +1,12 @@
 #include "fillit.h"
 
-int 	is_file_valid(char *argv, int *p_sum_fig)
+int 	is_file_valid(char *buffer, int *sum_tetriminos)
 {
-    int		fd;
-    int		read_chrs = 0;
     int		sum_chrs = 0;
     int		sum_sharps = 0;
-    int		sum_tetriminos = 0;
     int 	i = 0,j = 0;
-    char 	buffer[BUFF_SIZE + 1];
 
-    if (!(fd = open(argv, O_RDONLY)))
-        return (ERROR);
-    if (!(read_chrs = read(fd, buffer, BUFF_SIZE)))
-        return (ERROR);
-    buffer[read_chrs] = '\0';
-    close(fd);
-    if (read_chrs == BUFF_SIZE)
-        return (ERROR);
-    else
-    {
-        while (buffer[j] != '\0')
+    while (buffer[j] != '\0')
         {
             while (i < 4 && buffer[j] != '\n' && sum_chrs < 5)
             {
@@ -59,10 +45,9 @@ int 	is_file_valid(char *argv, int *p_sum_fig)
                     return (ERROR);
             }
         }
-        printf("Figures sum = %i\n", sum_tetriminos);
-    }
-    *p_sum_fig = sum_tetriminos; /// для того чтобы передать кол-во фигур в другую ф-ю
-    if (read_chrs == sum_tetriminos * 20 + (sum_tetriminos - 1) && is_figure_valid(buffer, sum_tetriminos))
+    printf("Figures sum = %i\n", *sum_tetriminos);
+    if ((is_figure_valid(buffer)) == 1)
         return (1);
-    return (ERROR);
+    else
+    	return (ERROR);
 }

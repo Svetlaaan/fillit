@@ -1,155 +1,88 @@
-#include <zconf.h>
 #include "fillit.h"
-
-static	t_tet	*new_tet_points(t_tet **head, int **points_x_y) // записываем координаты в лист
-{
-    t_tet *new;
-    t_tet *tmp;
-
-    new = NULL;
-    tmp = *head;
-    if (!head || !points_x_y)
-        return (NULL);
-    while ((tmp)->next)
-        tmp = (tmp)->next;
-    new = (t_tet *) malloc(sizeof(t_tet));
-    if (new)
-    {
-        new->points_x_y = points_x_y;
-        tmp->next = new;
-        new->next = NULL;
-    }
-    //printf("%d\n", new->points_x_y[0]);
-    return (new);
-}
 
 static int		**new_arr_points(void) // выделяем память под новый массив координат
 {
-    int 	**new;
-    int		i = 0, j = 0;
+	int 	**new;
+	int		i = 0;
 
-    if (!(new = (int**)malloc(4 * sizeof(int*))))
+	if (!(new = (int**)malloc(4 * sizeof(int*))))
+		return (NULL);
+	while (i < 4)
+	{
+		new[i] = (int*)malloc(2 * sizeof(int));
+		i++;
+	}
+	return (new);
+}
+
+static	t_tet	*new_tet_points(void) // записываем координаты в лист
+{
+    t_tet *new;
+
+    if (!(new = (t_tet*)malloc(sizeof(t_tet))))
         return (NULL);
-    while (i < 4)
-    {
-        new[i] = (int*)malloc(2 * sizeof(int));
-        i++;
-    }
+    new->points_y_x = new_arr_points();
+    new->y_min = -1;
+    new->x_min = -1;
+    new->next = NULL;
+    new->prev = NULL;
     return (new);
 }
 
-/*static void    free_listpoints(t_tet **head) // функциф с басика день 11 задание 6
+static void		print_cootdinats(t_tet *head)
 {
-    t_tet *current;
-    t_tet *tmp;
-
-    current = *head;
-    while (current)
-    {
-        tmp = current->next; // tmp = ссылка на след элемент
-        free(current); // чистим current (т,е, в первом случае head)
-        current = tmp; // теперь current это слдующий элемент, проходим цикл дальше
-    }
-    *head = NULL;
+	int i = 0;
+	while (head->next != NULL)
+	{
+		while (i < 4)
+		{
+			printf("y_x %i %i\n", head->points_y_x[i][0], head->points_y_x[i][1]);
+			i++;
+		}
+		printf("\n");
+		head = (t_tet *)head->next;
+		i = 0;
+	} //выводим координаты в листах
 }
-*/
 
-int				save_x_y(t_tet *head, char *argv)
+void *save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet *head)
 {
-    char 	buf[BUFF_SIZE + 1];
-    int		fd;
-    char 	field[4][5];
-    int		read_chrs;
-    int 	**points_x_y;
-    int 	x_min = -1, x;
-    int 	y_min = -1, y;
-    int 	k = 0;
+    int 	j = 0;
     int 	i = 0;
-    t_tet	*tetri;
+    //t_tet	*head = NULL;
+    t_tet	*tmp;
+    t_tet	*prev_tet_tmp = NULL;
     int 	sum_t_tet = 0;
 
-    //head = NULL;
-    if (!(fd = open(argv, O_RDONLY)))
-        return (ERROR);
-    if (!(read_chrs = read(fd, buf, BUFF_SIZE)))
-        return (ERROR);
-    buf[read_chrs] = '\0';
-    close(fd);
-
-    points_x_y = new_arr_points();
-    while (buf[k] != '\0')
-    {
-        if (buf[k] == '#')
-        {
-            if (x_min == -1 && y_min == -1)
-            {
-                x_min = (k - 21 * sum_t_tet) % 5;
-                y_min = (k - 21 * sum_t_tet) / 5; /// МИНУС 21хКОЛ-ВО ФИГУР (ЗАПИСАННЫХ)
-            }
-            points_x_y[i][0] = (k - 21 * sum_t_tet) / 5 - y_min;
-            points_x_y[i][1] = (k - 21 * sum_t_tet) % 5 - x_min;
-            i++;
-        }
-        k++;
-    }
-    sum_t_tet++;
-    //head = new_tet_points(&head, points_x_y);
-    head = malloc(sizeof(t_tet));
-    if (head)
-    {
-        head->points_x_y = points_x_y;
-        head->next = NULL;
-    }
-    int j = 0;
-    while (j < 4)
-    {
-        printf("y_x = %i %i\n", head->points_x_y[j][0], head->points_x_y[j][1]);
-        j++;
-    } //Вывод координат на экран
-    tetri = new_tet_points(&head, points_x_y); // не сюда куда-то
-   /* while (j < 4)
-    {
-        printf("y_x = %i %i\n", tet_1->points_x_y[j][0], tet_1->points_x_y[j][1]);
-        j++;
-    } //Вывод координат на экран
-    while(a < 4)
-    {
-        while(b < 4)
-        {
-            field[a][b] = '.';
-            printf("%c", field[a][b]);
-            b++;
-        }
-        printf("\n");
-        field[a][b] = '\0';
-        a++;
-        b = 0;
-    } //Заполняю поле '.'
-    printf("\n");
-    a = 0, b = 0;
-
-    while (c < 4)
-    {
-        if ((a + points_x_y[c][0] < 0) || (b + points_x_y[c][1] < 0))
-        {
-            b++;
-            c = 0;
-        }
-        c++;
-    }
-
-    c = 0;
-    while (c < 4)
-    {
-        field[a + points_x_y[c][0]][b + points_x_y[c][1]] = 'A';
-        c++;
-    }
-
-    a = 0;
-    while (a < 4)
-    {
-        printf("%s\n", field[a]);
-        a++;
-    } */
-    return (1);
+	tmp = new_tet_points();
+	head = tmp;
+	while (buf[j] != '\0')
+	{
+		while (i < 4)
+		{
+			if (buf[j] == '#')
+			{
+				if (tmp->y_min == -1 && tmp->x_min == -1)
+				{
+					tmp->y_min = (j - 21 * sum_t_tet) / 5; /// МИНУС 21xКОЛ-ВО ФИГУР (ЗАПИСАННЫХ)
+					tmp->x_min = (j - 21 * sum_t_tet) % 5;
+				}
+				tmp->points_y_x[i][0] = (j - 21 * sum_t_tet) / 5 - tmp->y_min;
+				tmp->points_y_x[i][1] = (j - 21 * sum_t_tet) % 5 - tmp->x_min;
+				i++;
+			}
+			j++;
+		}
+		prev_tet_tmp = tmp;
+		tmp->next = new_tet_points();
+		tmp = (t_tet *) tmp->next;
+		tmp->prev = prev_tet_tmp;
+		sum_t_tet++;
+		i = 0;
+		if (sum_tetriminos == sum_t_tet)
+			break ;
+		j = 21 * sum_t_tet;
+	}
+	print_cootdinats(head); //выводим координаты
+	return (head);
 }

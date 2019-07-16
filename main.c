@@ -1,28 +1,45 @@
 #include "fillit.h"
 
+static int 	read_tetriminos(char *argv, char **buffer)
+{
+	int		fd;
+	int		read_chrs;
+
+	if (!(*(buffer) = ft_memalloc(BUFF_SIZE + 1)))
+		return (ERROR);
+	if (!(fd = open(argv, O_RDONLY)))
+		return (ERROR);
+	if (!(read_chrs = read(fd, *buffer, BUFF_SIZE)))
+		return (ERROR);
+	if (read_chrs == BUFF_SIZE) /////ОШИБКА КОЛИЧЕСТВА СИМВОЛОВ
+		return (ERROR);
+	close(fd);
+	return (read_chrs);
+}
+
 int		main(int argc, char **argv)
 {
-	int file_valid;
-	int sum_fig = 56;
-	int *p_sum_fig;
-	t_tet   *head;
+	char	*buffer;
+	int		read_chrs;
+	int		sum_tet;
+	t_tet  *head = NULL;
 
-    head = NULL;
-    //head->next = NULL;
-	p_sum_fig = &sum_fig;
-
+	sum_tet = 0;
+	if ((read_chrs = read_tetriminos(argv[1], &buffer)) == -1)
+		return (ERROR);
 	if (argc > 2)
-		printf("usage: fillit target_file");
+		ft_putstr("usage: fillit target_file");
 	else
 	{
-		file_valid = is_file_valid(argv[1], p_sum_fig);
-		if (file_valid == 1)
-			printf("Tetriminos and file are valid\n");
+		if (is_file_valid(buffer,&sum_tet) == 1) //
+		{
+			ft_putstr("Tetriminos and file are valid\n");
+			if ((save_x_y(argv[1], buffer, sum_tet, head) == NULL))
+				return (ERROR);
+			total(&head);
+		}
 		else
-			printf("File isn't valid.\n");
+			ft_putstr("error\n");
 	}
-	//save_tetriminos(argv[1]);
-	save_x_y(head, argv[1]);
-	printf("sum_fig = %i\n", sum_fig);
 	return (0);
 }

@@ -10,16 +10,19 @@
 # include <stdio.h>
 
 
-typedef struct		s_tetrimino
+typedef struct		tetrimino
 {
-	int				**points_x_y;
-	struct s_list	*next;
-	struct s_list	*prev;
+	int				**points_y_x;
+	int             y_min;
+	int             x_min;
+	struct tetrimino	*next;
+	struct tetrimino	*prev;
 }					t_tet;
 
 
-int 				is_file_valid(char *argv, int *p_sum_fig);
-int					is_figure_valid(const char *buf, int sum_tet);
-int 				save_x_y(t_tet *head, char *argv);
+int 				is_file_valid(char *argv, int *sum_tetriminos);
+int					is_figure_valid(char *buf);
+void * save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet *head);
+void    			total(t_tet *buffer);
 
 #endif

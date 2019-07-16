@@ -39,7 +39,7 @@ void    print_field(char **field)
     }
 }
 
-char	**algoritm(char **t_field, t_tet *tetri, int size)
+char	**algoritm(char **t_field, t_tet *head, int size)
 {
     int		x;
     int		y;
@@ -47,17 +47,15 @@ char	**algoritm(char **t_field, t_tet *tetri, int size)
 
     field = NULL;
     y = 0;
-    if (tetri->next == NULL)
-        return (t_field);
+    if (head->next == NULL)
+        return (t_field);// ne tak
     while (y < size)
     {
         x = 0;
         while (x < size)
         {
-            xy_tetri(&tetri, x, y);
             if (check_tetri(t_field, tetri, size))
-                field = algo(insert_tetri(t_field, tetri, size),
-                           tetri->next, size);
+                field = algoritm(insert_tetri(t_field, head, size), head->next, size);
             if (field)
                 return (field);
             t_field = remove_tetri(t_field, tetri, size);
@@ -68,7 +66,7 @@ char	**algoritm(char **t_field, t_tet *tetri, int size)
     return (NULL);
 }
 
-void    total(t_tet *tetri)
+void    total(t_tet *head)
 {
     char **res;
     char **t_field;
@@ -78,7 +76,7 @@ void    total(t_tet *tetri)
     size = 2, // мин размер поля
     t_field = NULL;
     t_field = new_field(t_field, size);
-    while (!(res = algo(t_field, tetri, size)))
+    while (!(res = algoritm(t_field, &head, size)))
     {
         size++;
         ft_memdel((void **)t_field);
