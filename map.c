@@ -80,7 +80,7 @@ char	**algoritm(char **t_field, t_tet *head, int size)
     return (NULL);
 }
 
-void    total(t_tet *head, int sum_tet)
+void    total(t_tet **head, int sum_tet)
 {
     char **res;
     char **t_field;

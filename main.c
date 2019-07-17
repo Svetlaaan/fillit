@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
 			ft_putstr("Tetriminos and file are valid\n");
 			if (!(save_x_y(argv[1], buffer, sum_tet, &head)))
 				return (ERROR);
-			total((t_tet *)&head, sum_tet);
+			total(&head, sum_tet);
 		}
 		else
 			ft_putstr("error\n");
