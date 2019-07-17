@@ -21,6 +21,19 @@ char    **new_field(char **field, int size)
     return (field);
 }
 
+void	delete_field(char **field)
+{
+	size_t	i;
+
+	i = 0;
+	while (field[i])
+	{
+		free(field[i]);
+		++i;
+	}
+	free(field);
+}
+
 void    print_field(char **field)
 {
     int i;
@@ -44,21 +57,22 @@ char	**algoritm(char **t_field, t_tet *head, int size)
     int		x;
     int		y;
     char	**field;
+    int 	c;
 
     field = NULL;
     y = 0;
-    if (head->next == NULL)
-        return (t_field);// ne tak
+    //if (head->next == NULL)
+       // return (t_field);// ne tak
     while (y < size)
     {
         x = 0;
         while (x < size)
         {
-            if (check_tetri(t_field, tetri, size))
-                field = algoritm(insert_tetri(t_field, head, size), head->next, size);
+            //if (check_tetri(t_field, tetri, size))
+              //  field = algoritm(insert_tetri(t_field, head, size), head->next, size);
             if (field)
                 return (field);
-            t_field = remove_tetri(t_field, tetri, size);
+          //  t_field = remove_tetri(t_field, tetri, size);
             x++;
         }
         y++;
@@ -66,17 +80,19 @@ char	**algoritm(char **t_field, t_tet *head, int size)
     return (NULL);
 }
 
-void    total(t_tet *head)
+void    total(t_tet *head, int sum_tet)
 {
     char **res;
     char **t_field;
-    int size;
+    int min_size;
+    int size = 2;// минимальный размер стороны поля
 
     res = NULL;
-    size = 2, // мин размер поля
-    t_field = NULL;
+    min_size = sum_tet * 4; // мин размер поля = (кол-во фигур*4)
+    while (min_size > size * size) // т,к, нам нужен квадрат
+    	size++;
     t_field = new_field(t_field, size);
-    while (!(res = algoritm(t_field, &head, size)))
+    while (!(res = algoritm(t_field, &head, size))) // получаем конечное поле с расположеными фигурами
     {
         size++;
         ft_memdel((void **)t_field);

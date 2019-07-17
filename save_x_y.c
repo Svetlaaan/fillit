@@ -45,44 +45,54 @@ static void		print_cootdinats(t_tet *head)
 	} //выводим координаты в листах
 }
 
-void *save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet *head)
+static void		fill_t_tet_xy(char *buf, t_tet **tmp, int *sum_t_tet)
 {
-    int 	j = 0;
-    int 	i = 0;
-    //t_tet	*head = NULL;
-    t_tet	*tmp;
-    t_tet	*prev_tet_tmp = NULL;
-    int 	sum_t_tet = 0;
+	int i;
+	int j;
 
-	tmp = new_tet_points();
-	head = tmp;
-	while (buf[j] != '\0')
+	i = 0;
+	j = 0;
+	while (i < 4 )
 	{
-		while (i < 4)
+		if ((*(buf + j)) == '#')
 		{
-			if (buf[j] == '#')
+			if ((*tmp)->y_min == -1 && (*tmp)->x_min == -1)
 			{
-				if (tmp->y_min == -1 && tmp->x_min == -1)
-				{
-					tmp->y_min = (j - 21 * sum_t_tet) / 5; /// МИНУС 21xКОЛ-ВО ФИГУР (ЗАПИСАННЫХ)
-					tmp->x_min = (j - 21 * sum_t_tet) % 5;
-				}
-				tmp->points_y_x[i][0] = (j - 21 * sum_t_tet) / 5 - tmp->y_min;
-				tmp->points_y_x[i][1] = (j - 21 * sum_t_tet) % 5 - tmp->x_min;
-				i++;
+				(*tmp)->y_min = j / 5;
+				(*tmp)->x_min = j % 5;
 			}
-			j++;
+			(*tmp)->points_y_x[i][0] = j / 5 - (*tmp)->y_min;
+			(*tmp)->points_y_x[i][1] = j % 5 - (*tmp)->x_min;
+			i++;
 		}
+		j++;
+	}
+}
+
+t_tet				*save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet **head)
+{
+	int 	j = 0;
+	//t_tet	*head;
+	t_tet	*tmp;
+	t_tet	*prev_tet_tmp;
+	int 	sum_t_tet = 0;
+
+	printf("sum_tetriminos = %i\n", sum_tetriminos);
+	tmp = new_tet_points();
+	*head = tmp;
+	while (buf[j] != '\0')
+		//while (sum_tetriminos != sum_t_tet)
+	{
+		fill_t_tet_xy(buf + j, &tmp, &sum_t_tet);
 		prev_tet_tmp = tmp;
-		tmp->next = new_tet_points();
-		tmp = (t_tet *) tmp->next;
+		tmp->next = new_tet_points(); ///ОТФРИШИТЬ В СЛУЧАЕ ОШИБКИ
+		tmp = tmp->next;
 		tmp->prev = prev_tet_tmp;
 		sum_t_tet++;
-		i = 0;
 		if (sum_tetriminos == sum_t_tet)
 			break ;
 		j = 21 * sum_t_tet;
 	}
-	print_cootdinats(head); //выводим координаты
-	return (head);
+	print_cootdinats(*head); //выводим координаты
+	return (*head);
 }

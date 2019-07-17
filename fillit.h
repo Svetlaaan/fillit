@@ -22,7 +22,7 @@ typedef struct		tetrimino
 
 int 				is_file_valid(char *argv, int *sum_tetriminos);
 int					is_figure_valid(char *buf);
-void * save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet *head);
-void    			total(t_tet *buffer);
+t_tet				*save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet **head);
+void    			total(t_tet *buffer, int sum_tet);
 
 #endif
