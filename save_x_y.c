@@ -40,12 +40,12 @@ static void		print_cootdinats(t_tet *head)
 			i++;
 		}
 		printf("\n");
-		head = (t_tet *)head->next;
+		head = head->next;
 		i = 0;
 	} //выводим координаты в листах
 }
 
-static void		fill_t_tet_xy(char *buf, t_tet **tmp, int *sum_t_tet)
+static void		fill_t_tet_xy(char *buf, t_tet **tmp)
 {
 	int i;
 	int j;
@@ -72,7 +72,6 @@ static void		fill_t_tet_xy(char *buf, t_tet **tmp, int *sum_t_tet)
 t_tet				*save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet **head)
 {
 	int 	j = 0;
-	//t_tet	*head;
 	t_tet	*tmp;
 	t_tet	*prev_tet_tmp;
 	int 	sum_t_tet = 0;
@@ -81,11 +80,10 @@ t_tet				*save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet **head)
 	tmp = new_tet_points();
 	*head = tmp;
 	while (buf[j] != '\0')
-		//while (sum_tetriminos != sum_t_tet)
 	{
-		fill_t_tet_xy(buf + j, &tmp, &sum_t_tet);
+		fill_t_tet_xy(buf + j, &tmp);
 		prev_tet_tmp = tmp;
-		tmp->next = new_tet_points(); ///ОТФРИШИТЬ В СЛУЧАЕ ОШИБКИ
+		tmp->next = new_tet_points(); //ОТФРИШИТЬ В СЛУЧАЕ ОШИБКИ
 		tmp = tmp->next;
 		tmp->prev = prev_tet_tmp;
 		sum_t_tet++;

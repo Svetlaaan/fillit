@@ -3,7 +3,7 @@
 
 #define ERROR -1
 #define BUFF_SIZE 546
-# include <libft/libft.h>
+# include <libft.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -20,9 +20,9 @@ typedef struct		tetrimino
 }					t_tet;
 
 
-int 				is_file_valid(char *argv, int *sum_tetriminos);
+int 				is_file_valid(char *buffer, int read_chrs, int *sum_tetriminos);
 int					is_figure_valid(char *buf);
 t_tet				*save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet **head);
-void    			total(t_tet *buffer, int sum_tet);
+void    			total(t_tet *head, int sum_tet);
 
 #endif

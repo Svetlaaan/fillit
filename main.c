@@ -31,12 +31,12 @@ int		main(int argc, char **argv)
 		ft_putstr("usage: fillit target_file");
 	else
 	{
-		if (is_file_valid(buffer, &sum_tet) == 1) //
+		if (is_file_valid(buffer, read_chrs, &sum_tet) == 1)
 		{
 			ft_putstr("Tetriminos and file are valid\n");
 			if (!(save_x_y(argv[1], buffer, sum_tet, &head)))
 				return (ERROR);
-			total(&head, sum_tet);
+			total(head, sum_tet);
 		}
 		else
 			ft_putstr("error\n");
