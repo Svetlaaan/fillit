@@ -68,8 +68,8 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/fboggs/Desktop/Fillit/libft/ft_tolower.c" "/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles/Fillit.dir/libft/ft_tolower.c.o"
   "/Users/fboggs/Desktop/Fillit/libft/ft_toupper.c" "/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles/Fillit.dir/libft/ft_toupper.c.o"
   "/Users/fboggs/Desktop/Fillit/main.c" "/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles/Fillit.dir/main.c.o"
-  "/Users/fboggs/Desktop/Fillit/map.c" "/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles/Fillit.dir/map.c.o"
   "/Users/fboggs/Desktop/Fillit/save_x_y.c" "/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles/Fillit.dir/save_x_y.c.o"
+  "/Users/fboggs/Desktop/Fillit/total.c" "/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles/Fillit.dir/total.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

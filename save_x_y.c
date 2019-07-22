@@ -69,27 +69,32 @@ static void		fill_t_tet_xy(char *buf, t_tet **tmp)
 	}
 }
 
-t_tet				*save_x_y(char *argv, char *buf, int sum_tetriminos, t_tet **head)
+t_tet				*save_x_y(char *buf, int sum_tetriminos, t_tet **head)
 {
 	int 	j = 0;
 	t_tet	*tmp;
 	t_tet	*prev_tet_tmp;
-	int 	sum_t_tet = 0;
+	int 	sum_t_tet = 1;
 
 	printf("sum_tetriminos = %i\n", sum_tetriminos);
-	tmp = new_tet_points();
+	if (!(tmp = new_tet_points()))
+		return (NULL);
 	*head = tmp;
 	while (buf[j] != '\0')
 	{
 		fill_t_tet_xy(buf + j, &tmp);
+		if (sum_t_tet == sum_tetriminos)
+			break ;
 		prev_tet_tmp = tmp;
-		tmp->next = new_tet_points(); //ОТФРИШИТЬ В СЛУЧАЕ ОШИБКИ
+		if (!(tmp->next = new_tet_points()))
+		{
+			free(&tmp);
+			return (NULL); //ОТФРИШИТЬ В СЛУЧАЕ ОШИБКИ
+		}
 		tmp = tmp->next;
 		tmp->prev = prev_tet_tmp;
-		sum_t_tet++;
-		if (sum_tetriminos == sum_t_tet)
-			break ;
 		j = 21 * sum_t_tet;
+		sum_t_tet++;
 	}
 	print_cootdinats(*head); //выводим координаты
 	return (*head);

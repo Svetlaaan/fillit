@@ -1851,33 +1851,6 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/main.c.s
 .PHONY : main.c.s
 
-map.o: map.c.o
-
-.PHONY : map.o
-
-# target to build an object file
-map.c.o:
-	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/map.c.o
-.PHONY : map.c.o
-
-map.i: map.c.i
-
-.PHONY : map.i
-
-# target to preprocess a source file
-map.c.i:
-	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/map.c.i
-.PHONY : map.c.i
-
-map.s: map.c.s
-
-.PHONY : map.s
-
-# target to generate assembly for a file
-map.c.s:
-	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/map.c.s
-.PHONY : map.c.s
-
 save_x_y.o: save_x_y.c.o
 
 .PHONY : save_x_y.o
@@ -1904,6 +1877,33 @@ save_x_y.s: save_x_y.c.s
 save_x_y.c.s:
 	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/save_x_y.c.s
 .PHONY : save_x_y.c.s
+
+total.o: total.c.o
+
+.PHONY : total.o
+
+# target to build an object file
+total.c.o:
+	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/total.c.o
+.PHONY : total.c.o
+
+total.i: total.c.i
+
+.PHONY : total.i
+
+# target to preprocess a source file
+total.c.i:
+	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/total.c.i
+.PHONY : total.c.i
+
+total.s: total.c.s
+
+.PHONY : total.s
+
+# target to generate assembly for a file
+total.c.s:
+	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/total.c.s
+.PHONY : total.c.s
 
 # Help Target
 help:
@@ -2106,12 +2106,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... map.o"
-	@echo "... map.i"
-	@echo "... map.s"
 	@echo "... save_x_y.o"
 	@echo "... save_x_y.i"
 	@echo "... save_x_y.s"
+	@echo "... total.o"
+	@echo "... total.i"
+	@echo "... total.s"
 .PHONY : help
 
 

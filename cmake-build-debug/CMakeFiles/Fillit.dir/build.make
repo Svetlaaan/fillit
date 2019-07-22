@@ -902,18 +902,18 @@ CMakeFiles/Fillit.dir/save_x_y.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Fillit.dir/save_x_y.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/fboggs/Desktop/Fillit/save_x_y.c -o CMakeFiles/Fillit.dir/save_x_y.c.s
 
-CMakeFiles/Fillit.dir/map.c.o: CMakeFiles/Fillit.dir/flags.make
-CMakeFiles/Fillit.dir/map.c.o: ../map.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/Fillit.dir/map.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Fillit.dir/map.c.o   -c /Users/fboggs/Desktop/Fillit/map.c
+CMakeFiles/Fillit.dir/total.c.o: CMakeFiles/Fillit.dir/flags.make
+CMakeFiles/Fillit.dir/total.c.o: ../total.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/Fillit.dir/total.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Fillit.dir/total.c.o   -c /Users/fboggs/Desktop/Fillit/total.c
 
-CMakeFiles/Fillit.dir/map.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Fillit.dir/map.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/fboggs/Desktop/Fillit/map.c > CMakeFiles/Fillit.dir/map.c.i
+CMakeFiles/Fillit.dir/total.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Fillit.dir/total.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/fboggs/Desktop/Fillit/total.c > CMakeFiles/Fillit.dir/total.c.i
 
-CMakeFiles/Fillit.dir/map.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Fillit.dir/map.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/fboggs/Desktop/Fillit/map.c -o CMakeFiles/Fillit.dir/map.c.s
+CMakeFiles/Fillit.dir/total.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Fillit.dir/total.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/fboggs/Desktop/Fillit/total.c -o CMakeFiles/Fillit.dir/total.c.s
 
 # Object files for target Fillit
 Fillit_OBJECTS = \
@@ -982,7 +982,7 @@ Fillit_OBJECTS = \
 "CMakeFiles/Fillit.dir/is_file_valid.c.o" \
 "CMakeFiles/Fillit.dir/is_figure_valid.c.o" \
 "CMakeFiles/Fillit.dir/save_x_y.c.o" \
-"CMakeFiles/Fillit.dir/map.c.o"
+"CMakeFiles/Fillit.dir/total.c.o"
 
 # External object files for target Fillit
 Fillit_EXTERNAL_OBJECTS =
@@ -1052,7 +1052,7 @@ Fillit: CMakeFiles/Fillit.dir/main.c.o
 Fillit: CMakeFiles/Fillit.dir/is_file_valid.c.o
 Fillit: CMakeFiles/Fillit.dir/is_figure_valid.c.o
 Fillit: CMakeFiles/Fillit.dir/save_x_y.c.o
-Fillit: CMakeFiles/Fillit.dir/map.c.o
+Fillit: CMakeFiles/Fillit.dir/total.c.o
 Fillit: CMakeFiles/Fillit.dir/build.make
 Fillit: CMakeFiles/Fillit.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/fboggs/Desktop/Fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Linking C executable Fillit"

@@ -282,10 +282,10 @@
 		<Unit filename="/Users/fboggs/Desktop/Fillit/main.c">
 			<Option target="Fillit"/>
 		</Unit>
-		<Unit filename="/Users/fboggs/Desktop/Fillit/map.c">
+		<Unit filename="/Users/fboggs/Desktop/Fillit/save_x_y.c">
 			<Option target="Fillit"/>
 		</Unit>
-		<Unit filename="/Users/fboggs/Desktop/Fillit/save_x_y.c">
+		<Unit filename="/Users/fboggs/Desktop/Fillit/total.c">
 			<Option target="Fillit"/>
 		</Unit>
 		<Unit filename="/Users/fboggs/Desktop/Fillit/CMakeLists.txt">

@@ -6,17 +6,9 @@
 
 #IncludeRegexTransform: 
 
-.././libft/libft.h
-string.h
--
-unistd.h
--
-stdlib.h
--
-
 /Users/fboggs/Desktop/Fillit/fillit.h
 libft/libft.h
--
+/Users/fboggs/Desktop/Fillit/libft/libft.h
 stdlib.h
 -
 unistd.h
@@ -26,23 +18,15 @@ fcntl.h
 stdio.h
 -
 
-/Users/fboggs/Desktop/Fillit/is_figure_valid.c
-fillit.h
-/Users/fboggs/Desktop/Fillit/fillit.h
+/Users/fboggs/Desktop/Fillit/libft/libft.h
+string.h
+-
+unistd.h
+-
+stdlib.h
+-
 
-/Users/fboggs/Desktop/Fillit/is_file_valid.c
-fillit.h
-/Users/fboggs/Desktop/Fillit/fillit.h
-
-/Users/fboggs/Desktop/Fillit/main.c
-fillit.h
-/Users/fboggs/Desktop/Fillit/fillit.h
-
-/Users/fboggs/Desktop/Fillit/map.c
-fillit.h
-/Users/fboggs/Desktop/Fillit/fillit.h
-
-/Users/fboggs/Desktop/Fillit/save_x_y.c
+/Users/fboggs/Desktop/Fillit/total.c
 fillit.h
 /Users/fboggs/Desktop/Fillit/fillit.h
 

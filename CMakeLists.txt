@@ -74,5 +74,5 @@ add_executable(Fillit
         is_file_valid.c
         is_figure_valid.c
         save_x_y.c
-        map.c
+        total.c
        )
