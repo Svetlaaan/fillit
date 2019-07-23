@@ -23,19 +23,6 @@ static char    **new_field(char **field, int size)
     return (field);
 }
 
-/*static void	delete_field(char **field)
-{
-	size_t	i;
-
-	i = 0;
-	while (field[i])
-	{
-		free(field[i]);
-		++i;
-	}
-	free(field);
-}*/
-
 static void    print_field(char **field)
 {
     int i;
@@ -54,6 +41,12 @@ static void    print_field(char **field)
     }
 }
 
+static void delet_wrong_tetr(char **t_field, t_tet **tmp, int i, int x, int y)
+{
+	while (i--)
+		t_field[(*tmp)->points_y_x[i][0] + y][(*tmp)->points_y_x[i][1] + x] = '.';
+}
+
 static char **place_tetrimino(t_tet *tmp, int size, char what, char **t_field)
 {
 	int i; // счетчик по кординатам
@@ -64,20 +57,19 @@ static char **place_tetrimino(t_tet *tmp, int size, char what, char **t_field)
 	i = 0;
 	x = 0;
 	if ((tmp) == NULL)
-		return (NULL);
+		return (t_field);
 	while (i < 4) // если фигура с отрицательным иксом
 	{
-		if (((tmp)->points_y_x[i][1] + x) < 0)
+		if (((tmp)->points_y_x[i++][1] + x) < 0)
 		{
 			x++;
 			i = 0;
 		}
-		i++;
 	}
 	i = 0;
 	while (i < 4)
 	{
-		if ((((tmp)->points_y_x[i][0] + y) < size && ((tmp)->points_y_x[i][1] + x) < size) || (t_field[(tmp)->points_y_x[i][0] + y][(tmp)->points_y_x[i][1] + x + 1] != '.'))// ne tak!!!!!
+		if (((tmp)->points_y_x[i][0] + y) < size && ((tmp)->points_y_x[i][1] + x) < size)
 		{
 			if (t_field[(tmp)->points_y_x[i][0] + y][(tmp)->points_y_x[i][1] + x] == '.')
 			{
@@ -85,7 +77,22 @@ static char **place_tetrimino(t_tet *tmp, int size, char what, char **t_field)
 				i++;
 			}
 			else
-				x++;
+				if (((tmp)->points_y_x[i][1] + x + 1) < size) // с (+ 2) располагает верно и не увеличивает поле фигуры,
+					// у которых часть влезает на поле а првая часть нет. И из-за этого увеличивалось поле, а фигура
+					//может спокойно расположиться снизу
+					// но это не работает если последняя фигура палка АААААААА или J
+				{
+					delet_wrong_tetr(t_field, &tmp, i, x, y);
+					x++;
+					i = 0;
+				}
+				else if (((tmp)->points_y_x[i][0] + y + 1) < size)
+				{
+					delet_wrong_tetr(t_field, &tmp, i, x, y); // нужно вставить это в оба случая, исправило ошибку с фигурами в файле fсck
+					x = 0;
+					i = 0;
+					y++;
+				}
 		}
 		else
 			return (NULL);
