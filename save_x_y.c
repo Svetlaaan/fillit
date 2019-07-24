@@ -60,6 +60,8 @@ static void		fill_t_tet_xy(char *buf, t_tet **tmp)
 			{
 				(*tmp)->y_min = j / 5;
 				(*tmp)->x_min = j % 5;
+				printf("y min  %d\n", (*tmp)->y_min);
+				printf(" x-min %d\n", (*tmp)->x_min);
 			}
 			(*tmp)->points_y_x[i][0] = j / 5 - (*tmp)->y_min;
 			(*tmp)->points_y_x[i][1] = j % 5 - (*tmp)->x_min;

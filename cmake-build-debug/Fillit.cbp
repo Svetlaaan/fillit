@@ -84,6 +84,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/fboggs/Desktop/Fillit/fck">
+			<Option target="Fillit"/>
+		</Unit>
 		<Unit filename="/Users/fboggs/Desktop/Fillit/fillit.h">
 			<Option target="Fillit"/>
 		</Unit>
