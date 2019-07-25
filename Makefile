@@ -6,7 +6,7 @@
 #    By: fboggs <fboggs@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/25 16:00:18 by fboggs            #+#    #+#              #
-#    Updated: 2019/07/23 14:04:39 by fboggs           ###   ########.fr        #
+#    Updated: 2019/07/25 18:28:04 by fboggs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,13 @@ LFLAGS = -L $(LIB_DIR) -lft
 all: $(NAME)
 
 $(OBJ): %o: %c
-			gcc -c $(CFLAGS) -I. $< -o $@
+			gcc -c $(CFLAGS) -I. $<
 
 $(LIBA):
 			$(R_LIBA)
 
 $(NAME): $(LIBA) $(OBJ)
-			gcc $(CFLAGS) $(LFLAGS) -I. -o $@ $(OBJ)
+			@gcc $(CFLAGS) $(LFLAGS) -I. -o $@ $(OBJ)
 
 clean:
 			rm -f $(OBJ)

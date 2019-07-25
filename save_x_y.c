@@ -24,6 +24,8 @@ static	t_tet	*new_tet_points(void) // записываем координаты 
     new->points_y_x = new_arr_points();
     new->y_min = -1;
     new->x_min = -1;
+  //  new->map_x = 0;
+  //  new->map_y = 0;
     new->next = NULL;
     new->prev = NULL;
     return (new);
