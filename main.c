@@ -28,7 +28,7 @@ int		main(int argc, char **argv)
 	if ((read_chrs = read_tetriminos(argv[1], &buffer)) == -1)
 		return (ERROR);
 	if (argc > 2)
-		ft_putstr("usage: fillit target_file");
+		ft_putstr("usage: fillit target_file\n");
 	else
 	{
 		if (is_file_valid(buffer, read_chrs, &sum_tet) == 1)

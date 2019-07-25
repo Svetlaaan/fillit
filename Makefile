@@ -30,14 +30,14 @@ LFLAGS = -L $(LIB_DIR) -lft
 
 all: $(NAME)
 
-$(NAME): $(LIBA) $(OBJ)
-			gcc $(CFLAGS) $(LFLAGS) -I. -o $@ $(OBJ)
-
-%o:%c
-			gcc $(CFLAGS) -I. -c $<
+$(OBJ): %o: %c
+			gcc -c $(CFLAGS) -I. $< -o $@
 
 $(LIBA):
 			$(R_LIBA)
+
+$(NAME): $(LIBA) $(OBJ)
+			gcc $(CFLAGS) $(LFLAGS) -I. -o $@ $(OBJ)
 
 clean:
 			rm -f $(OBJ)
