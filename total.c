@@ -54,13 +54,6 @@ char	**remove_tetri(char **t_field, t_tet *tmp, int x, int y)
 	return  (t_field);
 }
 
-
-/*static void delet_wrong_tetr(char **t_field, t_tet **tmp, int i, int x, int y)
-{
-	while (i--)
-		t_field[(*tmp)->points_y_x[i][0] + y][(*tmp)->points_y_x[i][1] + x] = '.';
-}*/
-
 static int		is_tet_fit(char **field, t_tet *tmp, int size, int *x, int *y)
 {
 	int i = 0;
@@ -92,26 +85,26 @@ static int		is_tet_fit(char **field, t_tet *tmp, int size, int *x, int *y)
 	return (1);
 }
 
-static int		place_tetrimino(t_tet *tmp, char what, char ***t_field, int *x, int *y) //записываем тетримин на поле tmp, size, what++, &t_field, &x, &y
+static void		place_tetrimino(t_tet *tmp, char ***t_field, int x, int y) //записываем тетримин на поле tmp, size, what++, &t_field, &x, &y
 {
 	int i = 0;
 
 	while (i < 4)
 	{
-		*(*(*t_field + tmp->points_y_x[i][0] + *y) + (tmp->points_y_x[i][1] + *x)) = what;
+		*(*(*t_field + tmp->points_y_x[i][0] + y) + (tmp->points_y_x[i][1] + x)) = tmp->what;
 		i++;
 	}
-	return (1);
 }
 
 
-static  char **algoritm(char **t_field, t_tet *head, int size, char what)
+static  char **algoritm(char **t_field, t_tet *head, int size)
 {
 	t_tet *tmp;
 	int x;
 	int y = 0;
-	char **map = NULL;
+	char **map;
 
+	map = NULL;
 	tmp = head;
 	if (tmp == NULL)
 		return (t_field);
@@ -122,12 +115,11 @@ static  char **algoritm(char **t_field, t_tet *head, int size, char what)
 		{
 			if (is_tet_fit(t_field, tmp, size, &x, &y))
 			{
-				place_tetrimino(tmp, what++, &t_field, &x, &y);
-				map = algoritm(t_field, tmp->next, size, what); // если работать с t_field, то он пнредается пустой
+				place_tetrimino(tmp, &t_field, x, y);
+				map = algoritm(t_field, tmp->next, size); // если работать с t_field, то он пнредается пустой
 				if (map)
 					return (map);
 				t_field = remove_tetri(t_field, tmp, x, y);
-				//x++;
 			}
 			x++;
 		}
@@ -142,7 +134,7 @@ void    total(t_tet *head, int sum_tet)
     char	**t_field;
     int		min_size;
     int		size = 2;// минимальный размер стороны поля
-    char what = 'A';
+   // char what = 'A';
 
     res = NULL;
 	t_field = NULL;
@@ -150,7 +142,7 @@ void    total(t_tet *head, int sum_tet)
     while (min_size > size * size) // т,к, нам нужен квадрат
     	size++;
     t_field = new_field(t_field, size);
-    while (!(res = algoritm(t_field, head, size, what))) // получаем конечное поле с расположеными фигурами
+    while (!(res = algoritm(t_field, head, size))) // получаем конечное поле с расположеными фигурами
     {
         size++;
         ft_memdel((void **)&t_field); // подумать

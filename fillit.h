@@ -17,6 +17,7 @@ typedef struct		tetrimino
 	int             x_min;
 	struct tetrimino	*next;
 	struct tetrimino	*prev;
+	char			what;
 }					t_tet;
 
 

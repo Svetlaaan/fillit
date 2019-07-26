@@ -15,7 +15,7 @@ static int		**new_arr_points(void) // выделяем память под но�
 	return (new);
 }
 
-static	t_tet	*new_tet_points(void) // записываем координаты в лист
+static	t_tet	*new_tet_points(char what) // записываем координаты в лист
 {
     t_tet *new;
 
@@ -28,6 +28,7 @@ static	t_tet	*new_tet_points(void) // записываем координаты 
   //  new->map_y = 0;
     new->next = NULL;
     new->prev = NULL;
+    new->what = what;
     return (new);
 }
 
@@ -79,10 +80,13 @@ t_tet				*save_x_y(char *buf, int sum_tetriminos, t_tet **head)
 	t_tet	*tmp;
 	t_tet	*prev_tet_tmp;
 	int 	sum_t_tet = 1;
+	char what;
 
+	what = 'A';
 	printf("sum_tetriminos = %i\n", sum_tetriminos);
-	if (!(tmp = new_tet_points()))
+	if (!(tmp = new_tet_points(what)))
 		return (NULL);
+	what++;
 	*head = tmp;
 	while (buf[j] != '\0')
 	{
@@ -90,7 +94,7 @@ t_tet				*save_x_y(char *buf, int sum_tetriminos, t_tet **head)
 		if (sum_t_tet == sum_tetriminos)
 			break ;
 		prev_tet_tmp = tmp;
-		if (!(tmp->next = new_tet_points()))
+		if (!(tmp->next = new_tet_points(what++)))
 		{
 			free(&tmp);
 			return (NULL); //ОТФРИШИТЬ В СЛУЧАЕ ОШИБКИ
