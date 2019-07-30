@@ -84,10 +84,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/fboggs/Desktop/Fillit/fck">
+		<Unit filename="/Users/fboggs/Desktop/Fillit/fillit.h">
 			<Option target="Fillit"/>
 		</Unit>
-		<Unit filename="/Users/fboggs/Desktop/Fillit/fillit.h">
+		<Unit filename="/Users/fboggs/Desktop/Fillit/free_t_tet.c">
 			<Option target="Fillit"/>
 		</Unit>
 		<Unit filename="/Users/fboggs/Desktop/Fillit/is_figure_valid.c">

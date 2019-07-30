@@ -1,10 +1,11 @@
 #include "fillit.h"
 
-static int		**new_arr_points(void) // выделяем память под новый массив координат
+static int		**new_arr_points(void)
 {
-	int 	**new;
-	int		i = 0;
+	int		**new;
+	int		i;
 
+	i = 0;
 	if (!(new = (int**)malloc(4 * sizeof(int*))))
 		return (NULL);
 	while (i < 4)
@@ -15,37 +16,19 @@ static int		**new_arr_points(void) // выделяем память под но�
 	return (new);
 }
 
-static	t_tet	*new_tet_points(char what) // записываем координаты в лист
+static	t_tet	*new_tet_points(char what)
 {
-    t_tet *new;
+	t_tet *new;
 
-    if (!(new = (t_tet*)malloc(sizeof(t_tet))))
-        return (NULL);
-    new->points_y_x = new_arr_points();
-    new->y_min = -1;
-    new->x_min = -1;
-  //  new->map_x = 0;
-  //  new->map_y = 0;
-    new->next = NULL;
-    new->prev = NULL;
-    new->what = what;
-    return (new);
-}
-
-static void		print_cootdinats(t_tet *head)
-{
-	int i = 0;
-	while (head->next != NULL)
-	{
-		while (i < 4)
-		{
-			printf("y_x %i %i\n", head->points_y_x[i][0], head->points_y_x[i][1]);
-			i++;
-		}
-		printf("\n");
-		head = head->next;
-		i = 0;
-	} //выводим координаты в листах
+	if (!(new = (t_tet*)malloc(sizeof(t_tet))))
+		return (NULL);
+	new->points_y_x = new_arr_points();
+	new->y_min = -1;
+	new->x_min = -1;
+	new->next = NULL;
+	new->prev = NULL;
+	new->what = what;
+	return (new);
 }
 
 static void		fill_t_tet_xy(char *buf, t_tet **tmp)
@@ -55,7 +38,7 @@ static void		fill_t_tet_xy(char *buf, t_tet **tmp)
 
 	i = 0;
 	j = 0;
-	while (i < 4 )
+	while (i < 4)
 	{
 		if ((*(buf + j)) == '#')
 		{
@@ -63,8 +46,6 @@ static void		fill_t_tet_xy(char *buf, t_tet **tmp)
 			{
 				(*tmp)->y_min = j / 5;
 				(*tmp)->x_min = j % 5;
-				printf("y min  %d\n", (*tmp)->y_min);
-				printf(" x-min %d\n", (*tmp)->x_min);
 			}
 			(*tmp)->points_y_x[i][0] = j / 5 - (*tmp)->y_min;
 			(*tmp)->points_y_x[i][1] = j % 5 - (*tmp)->x_min;
@@ -74,16 +55,25 @@ static void		fill_t_tet_xy(char *buf, t_tet **tmp)
 	}
 }
 
-t_tet				*save_x_y(char *buf, int sum_tetriminos, t_tet **head)
+static void		next(t_tet **tmp, t_tet **prev_tet_tmp, int *j, int *sum_t_tet)
 {
-	int 	j = 0;
+	*tmp = (*tmp)->next;
+	(*tmp)->prev = *prev_tet_tmp;
+	*j = 21 * *sum_t_tet;
+	*sum_t_tet += 1;
+}
+
+t_tet			*save_x_y(char *buf, int sum_tetriminos, t_tet **head)
+{
+	int		j;
 	t_tet	*tmp;
 	t_tet	*prev_tet_tmp;
-	int 	sum_t_tet = 1;
-	char what;
+	int		sum_t_tet;
+	char	what;
 
+	sum_t_tet = 1;
+	j = 0;
 	what = 'A';
-	printf("sum_tetriminos = %i\n", sum_tetriminos);
 	if (!(tmp = new_tet_points(what)))
 		return (NULL);
 	what++;
@@ -95,15 +85,8 @@ t_tet				*save_x_y(char *buf, int sum_tetriminos, t_tet **head)
 			break ;
 		prev_tet_tmp = tmp;
 		if (!(tmp->next = new_tet_points(what++)))
-		{
-			free(&tmp);
-			return (NULL); //ОТФРИШИТЬ В СЛУЧАЕ ОШИБКИ
-		}
-		tmp = tmp->next;
-		tmp->prev = prev_tet_tmp;
-		j = 21 * sum_t_tet;
-		sum_t_tet++;
+			free_t_tet(&tmp);
+		next(&tmp, &prev_tet_tmp, &j, &sum_t_tet);
 	}
-	print_cootdinats(*head); //выводим координаты
 	return (*head);
 }

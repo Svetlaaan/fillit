@@ -65,6 +65,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Fillit.dir/is_figure_valid.c.o"
   "CMakeFiles/Fillit.dir/save_x_y.c.o"
   "CMakeFiles/Fillit.dir/total.c.o"
+  "CMakeFiles/Fillit.dir/free_t_tet.c.o"
   "Fillit.pdb"
   "Fillit"
 )

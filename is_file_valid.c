@@ -2,10 +2,10 @@
 
 static int		is_sum_chrs(char *buffer)
 {
-	int sum_sharps;
-	int sum_n;
-	int sum_dots;
-	int i;
+	int		sum_sharps;
+	int		sum_n;
+	int		sum_dots;
+	int		i;
 
 	sum_sharps = 0;
 	sum_n = 0;
@@ -26,18 +26,19 @@ static int		is_sum_chrs(char *buffer)
 	return (0);
 }
 
-int 	is_file_valid(char *buffer, int read_chrs, int *sum_tetriminos)
+int				is_file_valid(char *buffer, int read_chrs, int *sum_tetriminos)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (*(buffer + i) != '\0')
 	{
-		if	(is_sum_chrs(buffer + i) == 1)
+		if (is_sum_chrs(buffer + i) == 1)
 		{
 			*sum_tetriminos += 1;
-			if ((*(buffer + 20 * *sum_tetriminos + (*sum_tetriminos - 1)) == '\n'
-				 || (*(buffer + 20 * *sum_tetriminos + (*sum_tetriminos - 1)) == '\0')))
+			if ((*(buffer + 20 * *sum_tetriminos +
+				(*sum_tetriminos - 1)) == '\n' || (*(buffer + 20 *
+				*sum_tetriminos + (*sum_tetriminos - 1)) == '\0')))
 				i += 21;
 			else
 				return (ERROR);
@@ -45,8 +46,8 @@ int 	is_file_valid(char *buffer, int read_chrs, int *sum_tetriminos)
 		else
 			return (ERROR);
 	}
-	printf("Figures sum = %i\n", *sum_tetriminos);
-	if (read_chrs == *sum_tetriminos * 20 + (*sum_tetriminos - 1) && is_figure_valid(buffer) == 1)
+	if (read_chrs == *sum_tetriminos * 20 + (*sum_tetriminos - 1)
+	&& is_figure_valid(buffer) == 1)
 		return (1);
 	return (ERROR);
 }

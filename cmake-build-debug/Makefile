@@ -123,6 +123,33 @@ Fillit/fast:
 	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/build
 .PHONY : Fillit/fast
 
+free_t_tet.o: free_t_tet.c.o
+
+.PHONY : free_t_tet.o
+
+# target to build an object file
+free_t_tet.c.o:
+	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/free_t_tet.c.o
+.PHONY : free_t_tet.c.o
+
+free_t_tet.i: free_t_tet.c.i
+
+.PHONY : free_t_tet.i
+
+# target to preprocess a source file
+free_t_tet.c.i:
+	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/free_t_tet.c.i
+.PHONY : free_t_tet.c.i
+
+free_t_tet.s: free_t_tet.c.s
+
+.PHONY : free_t_tet.s
+
+# target to generate assembly for a file
+free_t_tet.c.s:
+	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/free_t_tet.c.s
+.PHONY : free_t_tet.c.s
+
 is_figure_valid.o: is_figure_valid.c.o
 
 .PHONY : is_figure_valid.o
@@ -1914,6 +1941,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Fillit"
+	@echo "... free_t_tet.o"
+	@echo "... free_t_tet.i"
+	@echo "... free_t_tet.s"
 	@echo "... is_figure_valid.o"
 	@echo "... is_figure_valid.i"
 	@echo "... is_figure_valid.s"

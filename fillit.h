@@ -10,20 +10,23 @@
 # include <stdio.h>
 
 
-typedef struct		tetrimino
+typedef struct			tetrimino
 {
-	int				**points_y_x;
-	int             y_min;
-	int             x_min;
+	int					**points_y_x;
+	int             	y_min;
+	int             	x_min;
 	struct tetrimino	*next;
 	struct tetrimino	*prev;
-	char			what;
-}					t_tet;
+	char				what;
+}						t_tet;
 
 
 int 				is_file_valid(char *buffer, int read_chrs, int *sum_tetriminos);
 int					is_figure_valid(char *buf);
 t_tet				*save_x_y(char *buf, int sum_tetriminos, t_tet **head);
 void    			total(t_tet *head, int sum_tet);
+int					free_t_tet(t_tet **tmp);
+char				**remove_tetri(char **t_field, t_tet *tmp, int x, int y);
+void				print_field(char **field);
 
 #endif

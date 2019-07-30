@@ -16,7 +16,7 @@ NAME = fillit
 
 LIB_DIR = libft
 
-SRC = main.c is_file_valid.c is_figure_valid.c save_x_y.c total.c
+SRC = main.c is_file_valid.c is_figure_valid.c save_x_y.c total.c free_t_tet.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -75,5 +75,5 @@ add_executable(Fillit
         is_figure_valid.c
         save_x_y.c
         total.c
-        fck
+        free_t_tet.c
        )
