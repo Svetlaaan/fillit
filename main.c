@@ -59,7 +59,7 @@ int				main(int argc, char **argv)
 	{
 		if (is_file_valid(buffer, read_chrs, &sum_tet) == 1)
 		{
-			if (!(head = save_x_y(buffer, sum_tet, &head)))
+			if (!(save_x_y(buffer, sum_tet, &head)))
 				print_mess(-1);
 			total(head, sum_tet);
 		}
