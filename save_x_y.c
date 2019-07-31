@@ -28,6 +28,8 @@ static	t_tet	*new_tet_points(char what)
 	new->next = NULL;
 	new->prev = NULL;
 	new->what = what;
+	new->x = 0;
+	new->y = 0;
 	return (new);
 }
 
