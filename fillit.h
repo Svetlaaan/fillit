@@ -25,7 +25,7 @@ typedef struct			tetrimino
 
 int 				is_file_valid(char *buffer, int read_chrs, int *sum_tetriminos);
 t_tet				*save_x_y(char *buf, int sum_tetriminos, t_tet **head);
-void    			total(t_tet *head, int sum_tet);
+int    			total(t_tet *head, int sum_tet);
 int					free_t_tet(t_tet **tmp);
 char				**remove_tetri(char **t_field, t_tet *tmp);
 void				print_field(char **field);

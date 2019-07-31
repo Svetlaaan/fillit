@@ -6,8 +6,7 @@ static char		**new_field(char **field, int size)
 	int		y;
 
 	y = 0;
-	field = (char **)malloc(sizeof(char *) * size + 1);
-	if (!field)
+	if (!(field = (char **)malloc(sizeof(char *) * (size + 1))))
 		return (NULL);
 	while (y < size)
 	{
@@ -19,7 +18,7 @@ static char		**new_field(char **field, int size)
 		field[y][x] = '\0';
 		y++;
 	}
-	field[y] = 0;
+	ft_bzero(&field[y], size + 1);
 	return (field);
 }
 
@@ -49,7 +48,7 @@ static int		is_tet_fit(char **field, t_tet *tmp, int size)
 			(tmp->points_y_x[i][1] + tmp->x) < size)
 		{
 			if (field[tmp->points_y_x[i][0] + tmp->y]
-				[tmp->points_y_x[i][1] + tmp->x] == '.')
+					[tmp->points_y_x[i][1] + tmp->x] == '.')
 				i++;
 			else if ((tmp->points_y_x[i][1] + tmp->x) < size - 1)
 				move_tetri(tmp, &i, 1);
@@ -103,26 +102,26 @@ static char		**algoritm(char **t_field, t_tet *tmp, int size)
 	return (NULL);
 }
 
-void			total(t_tet *head, int sum_tet)
+int			total(t_tet *head, int sum_tet)
 {
-	char	**res;
 	char	**t_field;
 	int		min_size;
 	int		size;
 
 	size = 2;
-	res = NULL;
 	t_field = NULL;
 	min_size = sum_tet * 4;
 	while (min_size > size * size)
 		size++;
-	t_field = new_field(t_field, size);
-	while (!(res = algoritm(t_field, head, size)))
+	if (!(t_field = new_field(t_field, size)))
+		return (0);
+	while (!(t_field = algoritm(t_field, head, size)))
 	{
 		size++;
 		ft_memdel((void **)&t_field);
 		t_field = new_field(t_field, size);
 	}
-	print_field(res);
+	print_field(t_field);
 	free_t_tet(&head);
+	return (1);
 }

@@ -4,10 +4,9 @@ void		print_field(char **field)
 {
 	int		i;
 
-	i = 0;
 	if (field == NULL)
 	{
-		ft_putendl("ERROR");
+		ft_putendl("error\n");
 		return ;
 	}
 	i = 0;
@@ -18,7 +17,7 @@ void		print_field(char **field)
 	}
 }
 
-static int		read_tetriminos(char *argv, char **buffer)
+static int	read_tetriminos(char *argv, char **buffer)
 {
 	int		fd;
 	int		read_chrs;
@@ -35,14 +34,7 @@ static int		read_tetriminos(char *argv, char **buffer)
 	return (read_chrs);
 }
 
-static int		print_mess(int i)
-{
-	if (i == -1)
-		ft_putstr("error\n");
-	return (ERROR);
-}
-
-int				main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	char	*buffer;
 	int		read_chrs;
@@ -54,17 +46,18 @@ int				main(int argc, char **argv)
 	if (argc > 2)
 		ft_putstr("usage: fillit target_file\n");
 	else if ((read_chrs = read_tetriminos(argv[1], &buffer)) == -1)
-		print_mess(-1);
+		ft_putstr("error\n");
 	else
 	{
 		if (is_file_valid(buffer, read_chrs, &sum_tet) == 1)
 		{
 			if (!(save_x_y(buffer, sum_tet, &head)))
-				print_mess(-1);
-			total(head, sum_tet);
+				ft_putstr("error\n");
+			if (!(total(head, sum_tet)))
+				ft_putstr("error\n");
 		}
 		else
-			print_mess(-1);
+			ft_putstr("error\n");
 	}
 	return (0);
 }

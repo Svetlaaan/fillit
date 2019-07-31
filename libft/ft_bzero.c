@@ -6,13 +6,13 @@
 /*   By: fboggs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 21:40:38 by fboggs            #+#    #+#             */
-/*   Updated: 2019/04/11 15:11:51 by fboggs           ###   ########.fr       */
+/*   Updated: 2019/07/31 18:18:16 by fboggs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void 	ft_bzero(void *s, size_t n)
 {
 	char	*ss;
 	size_t	cou;
