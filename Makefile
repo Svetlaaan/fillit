@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: fboggs <fboggs@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/05/25 16:00:18 by fboggs            #+#    #+#              #
-#    Updated: 2019/07/26 14:45:46 by fboggs           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 .PHONY : all clean fclean re
 
@@ -16,7 +5,7 @@ NAME = fillit
 
 LIB_DIR = libft
 
-SRC = main.c is_file_valid.c is_figure_valid.c save_x_y.c total.c free_t_tet.c
+SRC = main.c is_file_valid.c save_x_y.c total.c free_t_tet.c
 
 OBJ = $(SRC:.c=.o)
 

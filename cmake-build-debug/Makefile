@@ -150,33 +150,6 @@ free_t_tet.c.s:
 	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/free_t_tet.c.s
 .PHONY : free_t_tet.c.s
 
-is_figure_valid.o: is_figure_valid.c.o
-
-.PHONY : is_figure_valid.o
-
-# target to build an object file
-is_figure_valid.c.o:
-	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/is_figure_valid.c.o
-.PHONY : is_figure_valid.c.o
-
-is_figure_valid.i: is_figure_valid.c.i
-
-.PHONY : is_figure_valid.i
-
-# target to preprocess a source file
-is_figure_valid.c.i:
-	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/is_figure_valid.c.i
-.PHONY : is_figure_valid.c.i
-
-is_figure_valid.s: is_figure_valid.c.s
-
-.PHONY : is_figure_valid.s
-
-# target to generate assembly for a file
-is_figure_valid.c.s:
-	$(MAKE) -f CMakeFiles/Fillit.dir/build.make CMakeFiles/Fillit.dir/is_figure_valid.c.s
-.PHONY : is_figure_valid.c.s
-
 is_file_valid.o: is_file_valid.c.o
 
 .PHONY : is_file_valid.o
@@ -1944,9 +1917,6 @@ help:
 	@echo "... free_t_tet.o"
 	@echo "... free_t_tet.i"
 	@echo "... free_t_tet.s"
-	@echo "... is_figure_valid.o"
-	@echo "... is_figure_valid.i"
-	@echo "... is_figure_valid.s"
 	@echo "... is_file_valid.o"
 	@echo "... is_file_valid.i"
 	@echo "... is_file_valid.s"

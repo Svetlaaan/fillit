@@ -62,7 +62,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Fillit.dir/libft/ft_toupper.c.o"
   "CMakeFiles/Fillit.dir/main.c.o"
   "CMakeFiles/Fillit.dir/is_file_valid.c.o"
-  "CMakeFiles/Fillit.dir/is_figure_valid.c.o"
   "CMakeFiles/Fillit.dir/save_x_y.c.o"
   "CMakeFiles/Fillit.dir/total.c.o"
   "CMakeFiles/Fillit.dir/free_t_tet.c.o"

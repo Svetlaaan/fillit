@@ -5,10 +5,6 @@ CMakeFiles/Fillit.dir/free_t_tet.c.o: ../fillit.h
 CMakeFiles/Fillit.dir/free_t_tet.c.o: ../free_t_tet.c
 CMakeFiles/Fillit.dir/free_t_tet.c.o: ../libft/libft.h
 
-CMakeFiles/Fillit.dir/is_figure_valid.c.o: ../fillit.h
-CMakeFiles/Fillit.dir/is_figure_valid.c.o: ../is_figure_valid.c
-CMakeFiles/Fillit.dir/is_figure_valid.c.o: ../libft/libft.h
-
 CMakeFiles/Fillit.dir/is_file_valid.c.o: ../fillit.h
 CMakeFiles/Fillit.dir/is_file_valid.c.o: ../is_file_valid.c
 CMakeFiles/Fillit.dir/is_file_valid.c.o: ../libft/libft.h
