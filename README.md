@@ -17,3 +17,12 @@ Program must display the smallest assembled square on the standard output. To id
 Tetrimino, starting with ’A’ and increasing for each new Tetrimino.  
 
 *Example:*  
+
+
+**This is a group project.**  
+
+**Authors:**  
+<ul>
+        <li> <a href="https://github.com/Svetlaaanl">Svetlana Fomina</a></li>
+        <li><a href="https://github.com/randomaru">Maria Belyaeva</a></li>
+</ul>
