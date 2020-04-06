@@ -1,3 +1,5 @@
+![Fillit](https://github.com/Svetlaaan/fillit/blob/master/fillit.png)
+
 # fillit 100/100
 
 This project is written in C.  
@@ -10,14 +12,16 @@ A Tetrimino block is a shape made up of 4 consecutive characters.
 For the purpose of this projecte, Tetrominoes are considered fixed, meaning that they cannot be rotated and there are a total of 19 possible pieces that can be provided as input.  
 
 *A few examples of valid descriptions of Tetriminos:*  
+![Valid](https://github.com/Svetlaaan/fillit/blob/master/valid.png)
 
 *A few examples of invalid descriptions of Tetriminos:*  
+![Invalid](https://github.com/Svetlaaan/fillit/blob/master/invalid.png)
 
 Program must display the smallest assembled square on the standard output. To identify each Tetrimino in the square solution, we will assign a capital letter to each
 Tetrimino, starting with ’A’ and increasing for each new Tetrimino.  
 
 *Example:*  
-
+![Example](https://github.com/Svetlaaan/fillit/blob/master/fillit2.png)
 
 **This is a group project.**  
 
