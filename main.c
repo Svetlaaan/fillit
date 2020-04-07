@@ -1,23 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fboggs <fboggs@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/05 14:08:03 by fboggs            #+#    #+#             */
+/*   Updated: 2019/08/07 13:05:44 by fboggs           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-void		print_field(char **field)
+void			print_field(char **field, int size)
 {
 	int		i;
 
 	if (field == NULL)
 	{
-		ft_putendl("error\n");
+		ft_putendl("ERROR");
 		return ;
 	}
 	i = 0;
-	while (field[i] != 0)
+	while (i < size)
 	{
 		ft_putendl(field[i]);
 		i++;
 	}
 }
 
-static int	read_tetriminos(char *argv, char **buffer)
+static int		read_tetriminos(char *argv, char **buffer)
 {
 	int		fd;
 	int		read_chrs;
@@ -28,22 +40,29 @@ static int	read_tetriminos(char *argv, char **buffer)
 		return (ERROR);
 	if (!(read_chrs = read(fd, *buffer, BUFF_SIZE)))
 		return (ERROR);
-	if (read_chrs == BUFF_SIZE)
+	if (read_chrs == BUFF_SIZE || read_chrs < 20)
 		return (ERROR);
 	close(fd);
 	return (read_chrs);
 }
 
-int			main(int argc, char **argv)
+static void		final_free(t_tet **head, char **buffer)
+{
+	free_t_tet_head(head);
+	free(*buffer);
+	*buffer = NULL;
+}
+
+int				main(int argc, char **argv)
 {
 	char	*buffer;
 	int		read_chrs;
 	int		sum_tet;
 	t_tet	*head;
 
-	head = NULL;
+	buffer = NULL;
 	sum_tet = 0;
-	if (argc > 2)
+	if (argc == 1 || argc > 2)
 		ft_putstr("usage: fillit target_file\n");
 	else if ((read_chrs = read_tetriminos(argv[1], &buffer)) == -1)
 		ft_putstr("error\n");
@@ -53,11 +72,12 @@ int			main(int argc, char **argv)
 		{
 			if (!(save_x_y(buffer, sum_tet, &head)))
 				ft_putstr("error\n");
-			if (!(total(head, sum_tet)))
+			if (!(map(head, sum_tet)))
 				ft_putstr("error\n");
 		}
 		else
 			ft_putstr("error\n");
 	}
+	final_free(&head, &buffer);
 	return (0);
 }

@@ -1,49 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_file_valid.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fboggs <fboggs@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/05 14:09:23 by fboggs            #+#    #+#             */
+/*   Updated: 2019/08/07 11:36:23 by fboggs           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-static void		valid_sum(char *buf, int y, int *valid_num)
+static void		next_line_or_cell(int *i, int *x, int *y, int a)
+{
+	if (a == 2)
+	{
+		*i += 1;
+		*x = 0;
+		*y += 1;
+	}
+	else if (a == 1)
+	{
+		*i += 1;
+		*x += 1;
+	}
+}
+
+static void		valid_sum(char *buffer, int *valid_num)
 {
 	int x;
+	int y;
 	int i;
 
 	x = 0;
 	i = 0;
-	while (*(buf + i) != '\n')
+	y = 0;
+	while (y < 4)
 	{
-		if (*(buf + i) == '#')
+		while (*(buffer + i) != '\n')
 		{
-			*valid_num += 1;
-			if (x < 3 && *(buf + i + 1) == '#')
+			if (*(buffer + i) == '#')
+			{
 				*valid_num += 1;
-			if (y < 3 && *(buf + i + 5) == '#')
-				*valid_num += 1;
+				if (x < 3 && *(buffer + i + 1) == '#')
+					*valid_num += 1;
+				if (y < 3 && *(buffer + i + 5) == '#')
+					*valid_num += 1;
+			}
+			next_line_or_cell(&i, &x, 0, 1);
 		}
-		i++;
-		x++;
+		next_line_or_cell(&i, &x, &y, 2);
 	}
 }
 
-static int		is_figure_valid(char *buf)
+static int		is_figure_valid(char *buffer)
 {
-	int		y;
-	int		i;
-	int		valid_num;
-	int		fig_num;
+	int i;
+	int valid_num;
+	int fig_num;
 
-	fig_num = 0;
-	valid_num = -1;
 	i = 0;
-	y = 0;
-	while (buf[i] != '\0')
+	valid_num = -1;
+	fig_num = 0;
+	while (buffer[i] != '\0')
 	{
-		while (y < 4)
-		{
-			valid_sum((buf + i + (5 * y)), y, &valid_num);
-			y++;
-		}
+		valid_sum((buffer + i), &valid_num);
 		if (valid_num < 6 || valid_num > 7)
 			return (ERROR);
 		valid_num = -1;
-		y = 0;
 		i += 21;
 		fig_num++;
 	}
@@ -52,10 +77,10 @@ static int		is_figure_valid(char *buf)
 
 static int		is_sum_chrs(char *buffer)
 {
-	int		sum_sharps;
-	int		sum_n;
-	int		sum_dots;
-	int		i;
+	int sum_sharps;
+	int sum_n;
+	int sum_dots;
+	int i;
 
 	sum_sharps = 0;
 	sum_n = 0;
@@ -78,17 +103,18 @@ static int		is_sum_chrs(char *buffer)
 
 int				is_file_valid(char *buffer, int read_chrs, int *sum_tetriminos)
 {
-	int		i;
+	int i;
 
 	i = 0;
 	while (*(buffer + i) != '\0')
 	{
-		if (is_sum_chrs(buffer + i) == 1)
+		if (is_sum_chrs(buffer + i))
 		{
 			*sum_tetriminos += 1;
-			if ((*(buffer + 20 * *sum_tetriminos +
-				(*sum_tetriminos - 1)) == '\n' || (*(buffer + 20 *
-				*sum_tetriminos + (*sum_tetriminos - 1)) == '\0')))
+			if ((*(buffer + *sum_tetriminos * 20 +
+				(*sum_tetriminos - 1)) == '\n' ||
+				(*(buffer + *sum_tetriminos * 20 +
+				(*sum_tetriminos - 1)) == '\0')))
 				i += 21;
 			else
 				return (ERROR);
@@ -97,7 +123,7 @@ int				is_file_valid(char *buffer, int read_chrs, int *sum_tetriminos)
 			return (ERROR);
 	}
 	if (read_chrs == *sum_tetriminos * 20 + (*sum_tetriminos - 1)
-	&& is_figure_valid(buffer) == 1)
+		&& is_figure_valid(buffer) == 1)
 		return (1);
 	return (ERROR);
 }
