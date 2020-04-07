@@ -1,9 +1,9 @@
-# fillit 100/100
+# Fillit 100/100
 
 This project is written in C.  
 
 **The goal of project:**  
-*Given a set of Tetrominoes, find a way to assemble them in the smallest possible square.*
+Given a set of Tetrominoes, find a way to assemble them in the smallest possible square.
 
 ## Project Description  
 A Tetrimino block is a shape made up of 4 consecutive characters.  
@@ -23,7 +23,9 @@ Tetrimino, starting with ’A’ and increasing for each new Tetrimino.
 
 **This is a group project.**  
 
-**Authors:**  
+## Authors: 
+
+
 <ul>
         <li> <a href="https://github.com/Svetlaaanl">Svetlana Fomina</a></li>
         <li><a href="https://github.com/randomaru">Maria Belyaeva</a></li>
