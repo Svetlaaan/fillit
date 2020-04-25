@@ -1,6 +1,7 @@
 # Fillit 100/100
 
 This project is written in C.  
+Backtracking algorithm.
 
 **The goal of project:**  
 Given a set of Tetrominoes, find a way to assemble them in the smallest possible square.
