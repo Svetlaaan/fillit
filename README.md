@@ -28,6 +28,6 @@ Tetrimino, starting with ’A’ and increasing for each new Tetrimino.
 
 
 <ul>
-        <li> <a href="https://github.com/Svetlaaanl">Svetlana Fomina</a></li>
+        <li> <a href="https://github.com/Svetlaaan">Svetlana Fomina</a></li>
         <li><a href="https://github.com/randomaru">Maria Belyaeva</a></li>
 </ul>
